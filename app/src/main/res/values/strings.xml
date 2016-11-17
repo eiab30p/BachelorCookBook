@@ -7,5 +7,6 @@
     <string name="Description">Recipe Description</string>
     <string name="Items">Items</string>
     <string name="Directions">Directions</string>
+    <string name="Video">Video</string>
 
 </resources>

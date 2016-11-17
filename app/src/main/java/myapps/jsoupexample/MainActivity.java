@@ -23,7 +23,7 @@ import java.io.InputStream;
 public class MainActivity extends Activity {
 
     // URL Address
-    String url = "http://allrecipes.com/recipe/6700/";
+    String url = "http://allrecipes.com/recipe/67937/";
     //lowest is 6700 highest is 19900
     ProgressDialog mProgressDialog;
 
@@ -37,6 +37,7 @@ public class MainActivity extends Activity {
         Button itembutton = (Button) findViewById(R.id.itembutton);
         Button direcbutton = (Button) findViewById(R.id.direcbutton);
 
+        Button videobutton = (Button) findViewById(R.id.videobutton);
 
         // Capture button click
         titlebutton.setOnClickListener(new View.OnClickListener() {
@@ -70,7 +71,13 @@ public class MainActivity extends Activity {
             }
         });
 
-
+        // Capture button click
+        videobutton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View arg0) {
+                // Execute Description AsyncTask
+                new Video().execute();
+            }
+        });
 
     }
 
@@ -235,7 +242,44 @@ public class MainActivity extends Activity {
         }
     }
 
+    // Description AsyncTask
+    private class Video extends AsyncTask<Void, Void, Void> {
+        String vid;
 
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            mProgressDialog = new ProgressDialog(MainActivity.this);
+            mProgressDialog.setTitle("JSoup");
+            mProgressDialog.setMessage("Loading...");
+            mProgressDialog.setIndeterminate(false);
+            mProgressDialog.show();
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                // Connect to the web site
+                Document document = Jsoup.connect(url).get();
+                // Using Elements to get the Meta data
+                Elements video = document
+                        .select("a[id=btn_RecipeVideo]");
+                // Locate the content attribute
+                vid = video.attr("href");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            // Set description into TextView
+            TextView txtvideo = (TextView) findViewById(R.id.videotxt);
+            txtvideo.setText(vid);
+            mProgressDialog.dismiss();
+        }
+    }
 
 
 

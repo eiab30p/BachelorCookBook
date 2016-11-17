@@ -62,5 +62,20 @@
         android:layout_below="@+id/directxt"
         android:text="@string/Directions" />
 
+    <TextView
+        android:id="@+id/videotxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/direcbutton"
+        android:layout_centerInParent="true"
+        android:gravity="center" />
+
+    <Button
+        android:id="@+id/videobutton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/videotxt"
+        android:text="@string/Video" />
+
 
 </RelativeLayout>
