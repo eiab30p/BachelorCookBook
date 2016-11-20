@@ -276,23 +276,7 @@ public class MainActivity extends Activity {
 //            mProgressDialog.setMessage("Loading...");
 //            mProgressDialog.setIndeterminate(false);
 //            mProgressDialog.show();
-//        }
-//
-//        @Override
-//        protected Void doInBackground(Void... params) {
-//            try {
-//                // Connect to the web site
-//                Document document = Jsoup.connect(url).get();
-//                // Using Elements to get the Meta data
-//                Elements video = document
-//                        .select("a[id=btn_RecipeVideo]");
-//                // Locate the content attribute
-//                vid = video.attr("href");
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//            return null;
-//        }
+
 //
 
 
