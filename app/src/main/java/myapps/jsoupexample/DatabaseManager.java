@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 import android.widget.Toast;
 import java.util.ArrayList;
 
@@ -23,6 +24,7 @@ public class DatabaseManager extends SQLiteOpenHelper  {
     public static final String RECIPEDESCRIPTION = "recipeDescription";
     public static final String RECIPEITEMS = "recipeItems";
     public static final String RECIPEDIRECTIONS = "recipeDirections";
+    public static final String VIDEO ="recipeVideo";
     public static final String FAVORITES = "fav";
     public static final String SAVED = "saved";
     public static final String COOKED = "cooked";
@@ -31,17 +33,20 @@ public class DatabaseManager extends SQLiteOpenHelper  {
     public DatabaseManager (Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         appContext = context;
+
     }
 
 
     // 0 is false 1 is true for integer fields no Boolean types
     public void onCreate(SQLiteDatabase db){
+
         String sqlCreate = "create table " + RECIPESTABLE + " ( "
                 + ID + " integer primary key autoincrement, "
                 + RECIPENAME + " text, "
                 + RECIPEDESCRIPTION + " text, "
                 + RECIPEITEMS + " text, "
                 + RECIPEDIRECTIONS + " text, "
+                + VIDEO + " text, "
                 + FAVORITES + " integer, "
                 + SAVED + " integer, "
                 + COOKED + " integer "
@@ -54,15 +59,16 @@ public class DatabaseManager extends SQLiteOpenHelper  {
         }
     }
 
-    public  long insert (String name, String description, String items, String directions){
+    public long insert (String name, String description, String items, String directions, String video){
         long newId = -1;
         try{
             SQLiteDatabase db = this.getWritableDatabase( );
             ContentValues values = new ContentValues();
-            values.put(  RECIPENAME, name);
+            values.put( RECIPENAME, name);
             values.put( RECIPEDESCRIPTION, description);
             values.put( RECIPEITEMS, items);
             values.put( RECIPEDIRECTIONS, directions);
+            values.put( VIDEO, video);
             newId = db.insert(RECIPESTABLE, null, values);
             db.close();
         } catch ( SQLException se ) {
@@ -70,6 +76,7 @@ public class DatabaseManager extends SQLiteOpenHelper  {
         }
         return newId;
     }
+
 //Work on select all to display title and description
     public ArrayList<String> selectAll( ) {
 
@@ -82,7 +89,6 @@ public class DatabaseManager extends SQLiteOpenHelper  {
             cursor.moveToFirst();
             while ( !cursor.isAfterLast()) {
                 String oneRecord = "";
-
                 for ( int i = 0; i < cursor.getColumnCount(); i++) {
                     oneRecord += cursor.getString(i) + " ";
                 }
@@ -130,7 +136,30 @@ public class DatabaseManager extends SQLiteOpenHelper  {
         Toast.makeText( appContext, "onUpgrade called", Toast.LENGTH_LONG).show( );
     }
 
+    public void removeAll(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DROP TABLE IF EXISTS " + RECIPESTABLE);
 
+
+        String sqlCreate = "create table " + RECIPESTABLE + " ( "
+                + ID + " integer primary key autoincrement, "
+                + RECIPENAME + " text, "
+                + RECIPEDESCRIPTION + " text, "
+                + RECIPEITEMS + " text, "
+                + RECIPEDIRECTIONS + " text, "
+                + VIDEO + " text, "
+                + FAVORITES + " integer, "
+                + SAVED + " integer, "
+                + COOKED + " integer "
+                + ")";
+
+        try {
+            db.execSQL(sqlCreate);
+        } catch ( SQLException se ){
+            Toast.makeText(appContext, se.getMessage(), Toast.LENGTH_LONG).show();
+        }
+
+    }
 
 
 }
