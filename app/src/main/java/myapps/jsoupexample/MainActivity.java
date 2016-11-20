@@ -294,14 +294,7 @@ public class MainActivity extends Activity {
 //            return null;
 //        }
 //
-//        @Override
-//        protected void onPostExecute(Void result) {
-//            // Set description into TextView
-//            TextView txtvideo = (TextView) findViewById(R.id.videotxt);
-//            txtvideo.setText(vid);
-//            mProgressDialog.dismiss();
-//        }
-//    }
+
 
 
 
