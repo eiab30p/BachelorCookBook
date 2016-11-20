@@ -3,11 +3,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
+    <ScrollView
+        android:id="@+id/scrolling"
+        android:layout_width="match_parent"
+        android:layout_height="300dp">
+
+        <TextView android:id="@+id/db_contents"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text=""
+            android:textSize="20sp" />
+
+    </ScrollView>
+
     <TextView
         android:id="@+id/titletxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center" />
+        android:gravity="center"
+        android:layout_below="@+id/scrolling"/>
 
     <Button
         android:id="@+id/titlebutton"
@@ -16,66 +30,7 @@
         android:layout_below="@+id/titletxt"
         android:text="@string/Title" />
 
-    <TextView
-        android:id="@+id/desctxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/titlebutton"
-        android:layout_centerInParent="true"
-        android:gravity="center" />
 
-    <Button
-        android:id="@+id/descbutton"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/desctxt"
-        android:text="@string/Description" />
-
-
-    <TextView
-        android:id="@+id/itemtxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/descbutton"
-        android:layout_centerInParent="true"
-        android:gravity="center" />
-
-    <Button
-        android:id="@+id/itembutton"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/itemtxt"
-        android:text="@string/Items" />
-
-    <TextView
-        android:id="@+id/directxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/itembutton"
-        android:layout_centerInParent="true"
-        android:gravity="center" />
-
-    <Button
-        android:id="@+id/direcbutton"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/directxt"
-        android:text="@string/Directions" />
-
-    <TextView
-        android:id="@+id/videotxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/direcbutton"
-        android:layout_centerInParent="true"
-        android:gravity="center" />
-
-    <Button
-        android:id="@+id/videobutton"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/videotxt"
-        android:text="@string/Video" />
 
 
 </RelativeLayout>

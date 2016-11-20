@@ -9,4 +9,7 @@
     <string name="Directions">Directions</string>
     <string name="Video">Video</string>
 
+
+    <string name="unable_to_save"> FUCK OFF </string>
+    <string name="saved"> FUCK YES</string>
 </resources>
