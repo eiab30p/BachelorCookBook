@@ -1,12 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Jsoup </string>
+    <string name="home_title">Recipe</string>
+    <string name="search_title">Search:</string>
+    <string name="search_hint">Enter Ingredient</string>
+    <string name="search_button">Go</string>
+
+    <string name="common_ingredients">Common Ingredient:</string>
+    <string name="chicken_radio_button">Chicken</string>
+    <string name="beef_radio_button">Beef</string>
+    <string name="cereal_radio_button">Cereal</string>
+
+    <string name="results_label">Search Results:</string>
+
+    <!--ingredient checkbox-->
+    <string name="recipe_title_label">Your Recipe</string>
+    <string name="recipe_ingredients">Ingredients Needed</string>
+    <string name="ingredient_list">Ingredients</string>
+    <string name="directions">Directions:</string>
+    <string name="video_button_label">Watch Video</string>
+
+
+    <string name="ingredient1">Ingredient 1</string>
+    <string name="ingredient2">Ingredient 2</string>
+    <string name="ingredient3">Ingredient 3</string>
+
+
+
+    <string name="app_name">Bachelor Cook Book </string>
     <string name="action_settings">Settings</string>
     <string name="Title">Recipe Title</string>
     <string name="Description">Recipe Description</string>
     <string name="Items">Items</string>
     <string name="Directions">Directions</string>
     <string name="Video">Video</string>
+
+    <string name="no_code">No code</string>
 
 </resources>
