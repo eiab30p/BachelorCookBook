@@ -55,7 +55,7 @@ public class MainActivity extends Activity {
                 url = "http://allrecipes.com/recipe/" + i + "/";
             try {
 
-                    ////Connect to the web site
+                    ////Connect to the web sites
                     Document document = Jsoup.connect(url).get();
                     String test = String.valueOf(document);
 
