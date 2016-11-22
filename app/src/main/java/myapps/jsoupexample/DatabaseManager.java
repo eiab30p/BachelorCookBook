@@ -64,7 +64,7 @@ public class DatabaseManager extends SQLiteOpenHelper  {
         try{
             SQLiteDatabase db = this.getWritableDatabase( );
             ContentValues values = new ContentValues();
-            values.put( RECIPENAME, name);
+            values.put(  RECIPENAME, name);
             values.put( RECIPEDESCRIPTION, description);
             values.put( RECIPEITEMS, items);
             values.put( RECIPEDIRECTIONS, directions);
@@ -103,62 +103,11 @@ public class DatabaseManager extends SQLiteOpenHelper  {
         return recipeList;
     }
 
-// THis is going to be searched by ingredient
-    public ArrayList<String> selectByColumn( String columnName, String columnValue ) {
 
-        ArrayList<String> noteList = new ArrayList<String>( );
-        try {
-            SQLiteDatabase db = this.getReadableDatabase();
-
-            Cursor cursor = db.query(RECIPESTABLE, null, columnName + "=?",
-                    new String[] {columnValue}, null, null, columnName);
-
-            cursor.moveToFirst();
-            while ( !cursor.isAfterLast()) {
-                String oneRecord = "";
-
-                for ( int i = 0; i < cursor.getColumnCount(); i++) {
-                    oneRecord += cursor.getString(i) + " ";
-                }
-                noteList.add( oneRecord);
-                cursor.moveToNext();
-            }
-        }
-        catch ( SQLException se ) {
-            Toast.makeText( appContext, se.getMessage( ), Toast.LENGTH_LONG).show();
-        }
-
-        return noteList;
-    }
 
 
     public void onUpgrade( SQLiteDatabase db, int oldVersion, int newVersion) {
         Toast.makeText( appContext, "onUpgrade called", Toast.LENGTH_LONG).show( );
-    }
-
-    public void removeAll(){
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL("DROP TABLE IF EXISTS " + RECIPESTABLE);
-
-
-        String sqlCreate = "create table " + RECIPESTABLE + " ( "
-                + ID + " integer primary key autoincrement, "
-                + RECIPENAME + " text, "
-                + RECIPEDESCRIPTION + " text, "
-                + RECIPEITEMS + " text, "
-                + RECIPEDIRECTIONS + " text, "
-                + VIDEO + " text, "
-                + FAVORITES + " integer, "
-                + SAVED + " integer, "
-                + COOKED + " integer "
-                + ")";
-
-        try {
-            db.execSQL(sqlCreate);
-        } catch ( SQLException se ){
-            Toast.makeText(appContext, se.getMessage(), Toast.LENGTH_LONG).show();
-        }
-
     }
 
 

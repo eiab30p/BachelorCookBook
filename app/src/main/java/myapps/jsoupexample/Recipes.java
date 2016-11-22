@@ -40,7 +40,16 @@ public class Recipes extends AppCompatActivity {
         recipesDisplay.setText(allHistory);
     }
 
+    public void displayData( ArrayList<String> data) {
+        TextView recipesDisplay = (TextView) findViewById(R.id.db_contents);
+        String recipesData = "";
+        for ( String s : data ) {
+            recipesData += s + "\n";
+        }
 
+        recipesDisplay.setText( recipesData);
+
+    }
 
 
 }
