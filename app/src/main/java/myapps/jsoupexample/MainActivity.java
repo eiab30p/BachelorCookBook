@@ -35,9 +35,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         dbManager = new DatabaseManager(this);
-
             new Title().execute();
-
 }
 
    private class Title extends AsyncTask<Void, Void, Void> {
@@ -67,7 +65,7 @@ public class MainActivity extends Activity {
                     ////Connect to the web site
                     Document document = Jsoup.connect(url).get();
                     String test = String.valueOf(document);
-
+                    // get title
                     Elements thisTitle = document
                             .select("h1[class=recipe-summary__h1]");
                     title = thisTitle.text();
