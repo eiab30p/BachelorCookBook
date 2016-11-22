@@ -4,22 +4,15 @@ package myapps.jsoupexample;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
+
 import java.io.IOException;
-import java.io.InputStream;
 
 
 public class MainActivity extends Activity {
@@ -65,7 +58,7 @@ public class MainActivity extends Activity {
                     ////Connect to the web site
                     Document document = Jsoup.connect(url).get();
                     String test = String.valueOf(document);
-                    // get title
+
                     Elements thisTitle = document
                             .select("h1[class=recipe-summary__h1]");
                     title = thisTitle.text();
