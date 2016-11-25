@@ -1,11 +1,8 @@
 package myapps.jsoupexample;
 
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -23,13 +20,13 @@ public class Recipes extends AppCompatActivity {
 
         dbManager = new DatabaseManager(this);
 
-        showFileContents();
+        showTitleContents();
     }
 
 
 
     public void showFileContents(){
-        TextView recipesDisplay = (TextView) findViewById(R.id.db_contents);
+        //TextView recipesDisplay = (TextView) findViewById(R.id.db_contents);
         String allHistory="";
 
         ArrayList<String> allRecords = dbManager.selectAll();
@@ -37,17 +34,30 @@ public class Recipes extends AppCompatActivity {
         for(String s : allRecords){
             allHistory += s + "\n";
         }
+        //recipesDisplay.setText(allHistory);
+    }
+
+    public  void showTitleContents(){
+        TextView recipesDisplay = (TextView) findViewById(R.id.db_contents);
+        String allHistory="";
+
+        ArrayList<String> allRecords = dbManager.getTitle();
+
+        for(String s : allRecords){
+            allHistory += s + "\n";
+        }
         recipesDisplay.setText(allHistory);
+
     }
 
     public void displayData( ArrayList<String> data) {
-        TextView recipesDisplay = (TextView) findViewById(R.id.db_contents);
+        //TextView recipesDisplay = (TextView) findViewById(R.id.db_contents);
         String recipesData = "";
         for ( String s : data ) {
             recipesData += s + "\n";
         }
 
-        recipesDisplay.setText( recipesData);
+       // recipesDisplay.setText( recipesData);
 
     }
 

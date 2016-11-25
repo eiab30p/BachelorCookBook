@@ -4,8 +4,10 @@ package myapps.jsoupexample;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 
 import org.jsoup.Jsoup;
@@ -18,20 +20,34 @@ import java.io.IOException;
 public class MainActivity extends Activity {
 
     // URL Address
- String url;
-   // lowest is 6700 highest is 19900
+    String url;
+    // lowest is 6700 highest is 19900
     ProgressDialog mProgressDialog;
     private DatabaseManager dbManager;
+
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         dbManager = new DatabaseManager(this);
-            new Title().execute();
-}
 
-   private class Title extends AsyncTask<Void, Void, Void> {
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        if(!prefs.getBoolean("firstTime", false)) {
+            new Title().execute();
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putBoolean("firstTime", true);
+            editor.commit();
+        }else{
+            loadHistory(null);
+        }
+    }
+
+
+    private class Title extends AsyncTask<Void, Void, Void> {
         String title;
         String desc;
         String item;
@@ -46,19 +62,18 @@ public class MainActivity extends Activity {
             mProgressDialog.setMessage("Loading...");
             mProgressDialog.setIndeterminate(false);
             mProgressDialog.show();
+
         }
 
         @Override
         protected Void doInBackground(Void... params) {
             // 13199 RECIPES IF DONE SINGLE BT ADD 300 FOR RANGE
-            for (int i = 6701; i < 19900; i+= 300) {
+            for (int i = 6701; i < 19900; i+= 900) {
                 url = "http://allrecipes.com/recipe/" + i + "/";
-            try {
-
+                try {
                     //Connect to the web sites
                     Document document = Jsoup.connect(url).get();
                     String test = String.valueOf(document);
-
                     Elements thisTitle = document
                             .select("h1[class=recipe-summary__h1]");
                     title = thisTitle.text();
@@ -77,7 +92,6 @@ public class MainActivity extends Activity {
 
                     Elements video = document.select("a[id=btn_RecipeVideo]");
                     vid = video.attr("href");
-
 
                 }catch(IOException e){
                     e.printStackTrace();
@@ -99,6 +113,9 @@ public class MainActivity extends Activity {
         startActivity( new Intent(getApplicationContext(),
                 Recipes.class));
     }
+
+
+
 
 
 
