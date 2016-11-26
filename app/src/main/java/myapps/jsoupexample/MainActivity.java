@@ -43,7 +43,7 @@ public class MainActivity extends Activity {
             super.onPreExecute();
             mProgressDialog = new ProgressDialog(MainActivity.this);
             mProgressDialog.setTitle("JSoup ");
-            mProgressDialog.setMessage("Loading...");
+            mProgressDialog.setMessage("Loading Recipes...");
             mProgressDialog.setIndeterminate(false);
             mProgressDialog.show();
         }
@@ -51,7 +51,7 @@ public class MainActivity extends Activity {
         @Override
         protected Void doInBackground(Void... params) {
             // 13199 RECIPES IF DONE SINGLE BT ADD 300 FOR RANGE
-            for (int i = 6701; i < 19900; i+= 300) {
+            for (int i = 1; i < 900; i+= 100) {
                 url = "http://allrecipes.com/recipe/" + i + "/";
             try {
 

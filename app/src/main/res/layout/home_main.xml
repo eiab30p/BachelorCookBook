@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="#20262c">
 
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/home_title"
+        style="@style/textStyle"
         android:textSize="20sp"
         android:paddingTop="20dp"
         android:layout_centerHorizontal="true"/>
@@ -30,6 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/search_title"
         android:layout_alignBaseline="@id/search_title"
+        style="@style/textStyle"
         android:hint="@string/search_hint"
         android:textSize="14sp"
         android:paddingTop="10dp"
@@ -56,13 +59,14 @@
      <RadioGroup
         android:id="@+id/ingredient_radio_group"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="50dp"
         android:orientation="horizontal"
         android:layout_below="@id/common_ingredients">
         <RadioButton
             android:id="@+id/chicken_radio_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/textStyle"
             android:text="@string/chicken_radio_button"
             android:textSize="20sp"
             android:onClick="setCommonIngredient"/>
@@ -70,6 +74,7 @@
             android:id="@+id/beef_radio_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/textStyle"
             android:text="@string/beef_radio_button"
             android:textSize="20sp"
             android:onClick="setCommonIngredient"/>
@@ -77,6 +82,7 @@
             android:id="@+id/cereal_radio_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/textStyle"
             android:text="@string/cereal_radio_button"
             android:textSize="20sp"
             android:checked="true"
@@ -93,24 +99,21 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="500dp"
         android:layout_below="@id/results_label">
         <TextView
             android:id="@+id/test_text"
             style="@style/textStyle"
             android:text="Search results go here"/>
-
-
     </ScrollView>
 
-
-
-
-
-
-
-
-
-
+    <ImageView
+        android:id="@+id/salad_bowl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/results_label"
+        android:background="@drawable/salad_bowl01"
+        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>
