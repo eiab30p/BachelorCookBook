@@ -1,8 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#20262c">
+    android:layout_height="match_parent" >
 
     <ScrollView
         android:id="@+id/scrolling"
@@ -22,7 +21,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        style="@style/textStyle"
         android:layout_below="@+id/scrolling"/>
 
     <Button
@@ -30,8 +28,6 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/titletxt"
-        style="@style/textStyle"
-        android:background="#555554"
         android:text="@string/Title" />
 
 
