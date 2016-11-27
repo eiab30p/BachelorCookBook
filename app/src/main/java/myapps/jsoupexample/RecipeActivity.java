@@ -151,6 +151,9 @@ public class RecipeActivity extends AppCompatActivity {
             case R.id.saved_recipes_history:
                 loadHistory(null);
                 return true;
+            case R.id.return_home:
+                home(null);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
