@@ -4,75 +4,75 @@
 
     <item
         android:drawable="@drawable/salad_bowl01"
-        android:duration="100"
+        android:duration="150"
         />
     <item
         android:drawable="@drawable/salad_bowl02"
-        android:duration="100"
+        android:duration="150"
         />
     <item
         android:drawable="@drawable/salad_bowl03"
-        android:duration="100"
+        android:duration="150"
         />
     <item
         android:drawable="@drawable/salad_bowl04"
-        android:duration="100"
+        android:duration="150"
         />
     <item
         android:drawable="@drawable/salad_bowl05"
-        android:duration="100"
+        android:duration="150"
         />
     <item
         android:drawable="@drawable/salad_bowl06"
-        android:duration="100"
+        android:duration="150"
         />
     <item
         android:drawable="@drawable/salad_bowl07"
-        android:duration="100"
+        android:duration="150"
         />
     <item
         android:drawable="@drawable/salad_bowl08"
-        android:duration="100"
+        android:duration="150"
         />
     <item
         android:drawable="@drawable/salad_bowl09"
-        android:duration="100"
+        android:duration="150"
         />
     <item
         android:drawable="@drawable/salad_bowl10"
-        android:duration="100"
+        android:duration="150"
         />
     <item
         android:drawable="@drawable/salad_bowl11"
-        android:duration="100"
+        android:duration="150"
         />
     <item
         android:drawable="@drawable/salad_bowl12"
-        android:duration="100"
+        android:duration="150"
         />
     <item
         android:drawable="@drawable/salad_bowl13"
-        android:duration="100"
+        android:duration="150"
         />
     <item
         android:drawable="@drawable/salad_bowl14"
-        android:duration="100"
+        android:duration="150"
         />
     <item
         android:drawable="@drawable/salad_bowl15"
-        android:duration="100"
+        android:duration="150"
         />
     <item
         android:drawable="@drawable/salad_bowl16"
-        android:duration="100"
+        android:duration="150"
         />
     <item
         android:drawable="@drawable/salad_bowl17"
-        android:duration="100"
+        android:duration="150"
         />
     <item
         android:drawable="@drawable/salad_bowl18"
-        android:duration="100"
+        android:duration="150"
         />
 
 
