@@ -1,17 +1,21 @@
 package myapps.jsoupexample;
 
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.SimpleCursorAdapter;
@@ -35,6 +39,8 @@ public class MainActivity extends Activity {
     private Recipes recipesDB;
     private TextView id_tv, name_tv;
     private ImageButton search;
+    private AnimationDrawable frameAnimation = null;
+    private ImageView saladBowl;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,6 +50,11 @@ public class MainActivity extends Activity {
         recipesDB = new Recipes(this);
         recipesDB.open();
         recipeListView = (ListView) findViewById(R.id.listView1);
+
+        saladBowl = (ImageView)findViewById(R.id.salad_bowl);
+        saladBowl.setBackgroundResource(R.drawable.bowl_animation);
+        frameAnimation = (AnimationDrawable) saladBowl.getBackground();
+
 
         final ImageButton searchButton = (ImageButton) findViewById(R.id.search_button);
 
@@ -70,6 +81,13 @@ public class MainActivity extends Activity {
 
     public void searchByRecipe(){
 
+
+        performAnimation(R.anim.fade_salad);
+
+                frameAnimation.start();
+
+        saladBowl.setVisibility(View.INVISIBLE);
+
         EditText ingredieantsEntered = (EditText) findViewById(R.id.search_entry);
 
         if ( ingredieantsEntered.getText( ).toString().length( ) == 0 ) {
@@ -79,6 +97,7 @@ public class MainActivity extends Activity {
             runDataList(ingredieant);
 
         }
+
     }
 
 
@@ -91,7 +110,6 @@ public class MainActivity extends Activity {
         adapter.notifyDataSetChanged();
         recipeListView.setAdapter(adapter);
     }
-
 
 
     public void setCommonIngredient( View v ) {
@@ -110,10 +128,6 @@ public class MainActivity extends Activity {
         }
 
     }
-
-
-
-
 
 
 //JSOUP Way of getting Data
@@ -177,5 +191,23 @@ public class MainActivity extends Activity {
         }
     }
 
+    public void performAnimation( int animationResourceID ) {
+        Animation an = AnimationUtils.loadAnimation(this, animationResourceID);
+        an.setAnimationListener(new TweenAnimationListener());
+        ImageView saladBowlExplotion = (ImageView)findViewById(R.id.salad_bowl);
+        saladBowlExplotion.startAnimation(an);
+    }
 
+
+    class TweenAnimationListener implements Animation.AnimationListener {
+        public void onAnimationStart(Animation animation) {
+
+        }
+        public void onAnimationEnd(Animation animation) {
+
+        }
+        public void onAnimationRepeat(Animation animation) {
+
+        }
+    }
 }
