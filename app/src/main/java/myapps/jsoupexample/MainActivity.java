@@ -1,7 +1,6 @@
 package myapps.jsoupexample;
 
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,7 +15,6 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -41,9 +39,7 @@ public class MainActivity extends AppCompatActivity {
     ProgressDialog mProgressDialog;
     private DatabaseManager dbManager;
     private ListView recipeListView;
-    private ArrayAdapter arrayAdapter;
     private Recipes recipesDB;
-    private TextView id_tv, name_tv;
     private ImageButton search;
     private ImageView saladBowl;
     private AnimationDrawable frameAnimation;
@@ -54,30 +50,29 @@ public class MainActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_main);
-     //   dbManager = new DatabaseManager(this);
+
+        dbManager = new DatabaseManager(this);
         recipesDB = new Recipes(this);
         recipesDB.open();
         recipeListView = (ListView) findViewById(R.id.listView1);
 
-        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
         prefs = PreferenceManager.getDefaultSharedPreferences( this);
         initializeUserPreferences( );
-
         settingsListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
             public void onSharedPreferenceChanged( SharedPreferences prefs, String key ) {
                 initializeUserPreferences( );
             }
         };
-
         prefs.registerOnSharedPreferenceChangeListener( settingsListener);
+
 
         saladBowl = (ImageView)findViewById(R.id.salad_bowl);
         saladBowl.setBackgroundResource(R.drawable.bowl_animation);
         frameAnimation = (AnimationDrawable) saladBowl.getBackground();
-
-
         final ImageButton searchButton = (ImageButton) findViewById(R.id.search_button);
+
 
         //This runs only when it is the first time loading APP
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -87,10 +82,8 @@ public class MainActivity extends AppCompatActivity {
             editor.putBoolean("firstTime", true);
             editor.commit();
         }
-
         //Display All Recipes
         runDataList("Default");
-
 
         //Search Button, Send a recipes items to run Query
         searchButton.setOnClickListener(new View.OnClickListener() {
@@ -99,39 +92,36 @@ public class MainActivity extends AppCompatActivity {
                            }
         });
 
+
         recipeListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> a, View view, int position, long id) {
+
                 LinearLayout parent = (LinearLayout) view;
                 TextView t = (TextView) parent.findViewById(R.id.recipe_id);
+                String recipeID = (String)t.getText();
                 Toast.makeText(getBaseContext(), t.getText(), Toast.LENGTH_LONG).show();
-                startActivity(new Intent(MainActivity.this, RecipeActivity.class));
-                //displayTitle((String) t.getText());
+                Intent i = new Intent(getApplicationContext(),RecipeActivity.class);
+                i.putExtra("recipeID",recipeID);
+                startActivity(i);
+
             }
         });
     }
-    public void displayTitle(String id){
 
-    }
 
     public void searchByRecipe(){
 
-
         performAnimation(R.anim.fade_salad);
-
-
         frameAnimation.start();
-
         saladBowl.setVisibility(View.INVISIBLE);
 
         EditText ingredieantsEntered = (EditText) findViewById(R.id.search_entry);
-
         if ( ingredieantsEntered.getText( ).toString().length( ) == 0 ) {
             runDataList("Default");
         } else{
             String ingredieant = ingredieantsEntered.getText( ).toString( );
             runDataList(ingredieant);
-
         }
 
     }
@@ -186,8 +176,8 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... params) {
-            // 13199 RECIPES IF DONE SINGLE BT ADD 300 FOR RANGE
-            for (int i = 6701; i < 19900; i+= 900) {
+            // 13199 RECIPES IF DONE SINGLE BT ADD 300 FOR RANGE 6710
+            for (int i = 20144; i < 30000; i+= 900) {
                 url = "http://allrecipes.com/recipe/" + i + "/";
                 try {
                     //Connect to the web sites

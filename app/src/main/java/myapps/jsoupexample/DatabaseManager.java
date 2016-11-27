@@ -59,35 +59,37 @@ public class DatabaseManager extends SQLiteOpenHelper  {
         }
     }
 
+
+    public ArrayList<String> displayRecipe(String recipeID ) {
+        ArrayList<String> historyList = new ArrayList<String>( );
+        try{
+        String query = " SELECT " + RECIPENAME + " , "+ RECIPEDESCRIPTION + " , "+ RECIPEDIRECTIONS
+                + " , "+ RECIPEITEMS + " , "+ VIDEO  + " FROM " + RECIPESTABLE
+                + " WHERE " + ID + " = \"" + recipeID + "\"";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        cursor.moveToFirst();
+        while ( !cursor.isAfterLast()) {
+            String oneRecord = "";
+                Log.d("DATABASE", oneRecord);
+            for ( int i = 0; i < cursor.getColumnCount(); i++) {
+                historyList.add( cursor.getString(i) );
+            }
+            cursor.moveToNext();
+        }
+    }
+    catch ( SQLException se ) {
+        Toast.makeText( appContext, se.getMessage( ), Toast.LENGTH_LONG).show();
+    }
+
+    return historyList;
+
+    }
+
     public void onUpgrade( SQLiteDatabase db, int oldVersion, int newVersion) {
         Toast.makeText( appContext, "onUpgrade called", Toast.LENGTH_LONG).show( );
     }
-
-        public ArrayList<String> getTitle( ) {
-            ArrayList<String> recipeList = new ArrayList<String>( );
-            try {
-                SQLiteDatabase db = this.getReadableDatabase();
-                String query = "Select "+ RECIPENAME +" from " + RECIPESTABLE;
-                Cursor cursor = db.rawQuery( query, null);
-                cursor.moveToFirst();
-                while ( !cursor.isAfterLast()) {
-                    String oneRecord = "";
-                   for ( int i = 0; i < cursor.getColumnCount(); i++) {
-                        oneRecord += cursor.getString(i) + " ";
-                   }
-                   recipeList.add( oneRecord);
-                   cursor.moveToNext();
-               }
-            }
-           catch ( SQLException se ) {
-                Toast.makeText( appContext, se.getMessage( ), Toast.LENGTH_LONG).show();
-            }
-           return recipeList;
-        }
-
-
-
-
 
 
 

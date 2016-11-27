@@ -2,26 +2,20 @@ package myapps.jsoupexample;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
-import android.view.Menu;
+import android.support.v7.app.AppCompatActivity;
 
 /**
  * Created by Eduardo Verde on 11/20/2016.
  */
 
-public class Recipes {
+public class Recipes extends AppCompatActivity {
 
-    private DatabaseManager dbManager;
+    DatabaseManager dbManager;
     private Context ourcontext;
     private SQLiteDatabase database;
-
-
-
-
     public Recipes(Context c) {
         ourcontext = c;
     }
@@ -66,51 +60,5 @@ public class Recipes {
             return c;
         }
     }
-
-    //Get Title
-    public Cursor getTitle(String recipeid) {
-        String[] titleColumn = new String[]{"rowid _id", DatabaseManager.ID, DatabaseManager.RECIPENAME};
-        Cursor c = database.query(DatabaseManager.RECIPESTABLE, titleColumn, DatabaseManager.RECIPEITEMS + " = ?",
-                new String[]{"" + recipeid + "" }, null, null, null);
-        if (c != null) {
-            c.moveToFirst();
-        }
-        Log.d("Mother fluffer work!", "SENDING DATA");
-        return c;
-    }
-
-    //Get Description
-    public Cursor getDescription(String id) {
-        String[] titleColumn = new String[]{"rowid _id", DatabaseManager.ID, DatabaseManager.RECIPEDESCRIPTION};
-        Cursor c = database.query(DatabaseManager.RECIPESTABLE, titleColumn, DatabaseManager.RECIPEITEMS + " = ?",
-                new String[]{"%" + id + "%"}, null, null, null);
-        if (c != null) {
-            c.moveToFirst();
-        }
-        return c;
-    }
-
-    //Get Directions
-    public Cursor getDirection(String id) {
-        String[] titleColumn = new String[]{"rowid _id", DatabaseManager.ID, DatabaseManager.RECIPEDIRECTIONS};
-        Cursor c = database.query(DatabaseManager.RECIPESTABLE, titleColumn, DatabaseManager.RECIPEITEMS + " = ?",
-                new String[]{"%" + id + "%"}, null, null, null);
-        if (c != null) {
-            c.moveToFirst();
-        }
-        return c;
-    }
-
-    //Get Video
-    public Cursor getVideo(String id) {
-        String[] titleColumn = new String[]{"rowid _id", DatabaseManager.ID, DatabaseManager.VIDEO};
-        Cursor c = database.query(DatabaseManager.RECIPESTABLE, titleColumn, DatabaseManager.RECIPEITEMS + " = ?",
-                new String[]{"%" + id + "%"}, null, null, null);
-        if (c != null) {
-            c.moveToFirst();
-        }
-        return c;
-    }
-
 
 }
