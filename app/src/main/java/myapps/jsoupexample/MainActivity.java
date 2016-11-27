@@ -177,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... params) {
             // 13199 RECIPES IF DONE SINGLE BT ADD 300 FOR RANGE 6710
-            for (int i = 20144; i < 30000; i+= 900) {
+            for (int i = 6710; i < 30000; i+= 900) {
                 url = "http://allrecipes.com/recipe/" + i + "/";
                 try {
                     //Connect to the web sites

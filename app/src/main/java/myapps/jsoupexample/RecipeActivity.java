@@ -9,6 +9,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebChromeClient;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -42,12 +45,16 @@ public class RecipeActivity extends AppCompatActivity {
         Intent i = getIntent();
         String recipeID = i.getStringExtra("recipeID");
         setValues(recipeID);
-    }
+
+       }
 
 
     public void setValues (String recipeID){
         Log.d("PLEASE WORK",recipeID);
         ArrayList<String> allRecords = dbManager.displayRecipe(recipeID);
+
+        WebView webView = (WebView) findViewById(R.id.webview);
+
 
         TextView recipeTitle = (TextView)findViewById(R.id.recipeScreen_title);
         TextView recipeItems = (TextView)findViewById(R.id.db_ingredient_contents);
@@ -56,13 +63,25 @@ public class RecipeActivity extends AppCompatActivity {
         recipeTitle.setText(String.valueOf(allRecords.get(0)));
         recipeDirection.setText(String.valueOf(allRecords.get(2)));
 
+        loadWebViewLoad(webView, String.valueOf(allRecords.get(4)));
+        //webView.loadUrl("https://www.youtube.com/channel/UCtDPbPkC-4RrfKv7L8il7pA");
         allRecords.indexOf(1);//Description
         allRecords.indexOf(4);// Video check if it is null
-
         Log.d("IN RECIPES TITLE", String.valueOf(allRecords.get(4)));
-
     }
 
+    private void loadWebViewLoad(WebView webView, String url){
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
+        webView.getSettings().setSupportMultipleWindows(true);
+        webView.setWebViewClient(new WebViewClient());
+        webView.setWebChromeClient(new WebChromeClient());
+        String fullURL = "http://allrecipes.com"+url+"/";
+        String testURL = "http://allrecipes.com/video/673/banana-banana-bread/";
+        Log.d(fullURL,testURL);
+        webView.loadUrl(fullURL);
+
+    }
 
     public void loadSettings( View v ) {
         startActivity( new Intent( getApplicationContext( ),
