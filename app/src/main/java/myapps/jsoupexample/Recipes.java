@@ -61,4 +61,40 @@ public class Recipes extends AppCompatActivity {
         }
     }
 
+    public Cursor savedValues(String type) {
+        if (type.equals("Favorite")) {
+            String[] titleColumn = new String[]{"rowid _id", DatabaseManager.ID, DatabaseManager.RECIPENAME};
+            Cursor c = database.query(DatabaseManager.RECIPESTABLE, titleColumn,
+                    DatabaseManager.SAVED + " =?", new String[] { String.valueOf(1) }, null, null, null);
+            if (c != null) {
+                c.moveToFirst();
+            }
+            return c;
+
+        }else if (type.equals("Cooked")){
+            String[] titleColumn = new String[]{"rowid _id", DatabaseManager.ID, DatabaseManager.RECIPENAME};
+            Cursor c = database.query(DatabaseManager.RECIPESTABLE, titleColumn,
+                    DatabaseManager.COOKED + " =?", new String[] { String.valueOf(1) }, null, null, null);
+            if (c != null) {
+                c.moveToFirst();
+            }
+            return c;
+
+        }else{
+            String[] titleColumn = new String[]{"rowid _id", DatabaseManager.ID, DatabaseManager.RECIPENAME};
+            Cursor c = database.query(DatabaseManager.RECIPESTABLE, titleColumn,
+                    DatabaseManager.SAVED + " =?", new String[] { String.valueOf(1) }, null, null, null);
+            if (c != null) {
+                c.moveToFirst();
+            }
+            return c;
+        }
+    }
+
+
+
+
+
+
+
 }

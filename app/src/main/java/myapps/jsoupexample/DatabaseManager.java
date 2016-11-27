@@ -1,5 +1,6 @@
 package myapps.jsoupexample;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -39,7 +40,6 @@ public class DatabaseManager extends SQLiteOpenHelper  {
     }
 
     public void onCreate(SQLiteDatabase db){
-            Log.d("Database CREATE", "WORK GOD DAMNIT!");
         String sqlCreate = "create table " + RECIPESTABLE + " ( "
                 + ID + " integer primary key autoincrement, "
                 + RECIPENAME + " text, "
@@ -85,6 +85,30 @@ public class DatabaseManager extends SQLiteOpenHelper  {
 
     return historyList;
 
+
+    }
+
+    public void updateRecipe(String type, String recipeID){
+        try {
+            SQLiteDatabase db = this.getWritableDatabase( );
+
+            ContentValues values = new ContentValues();
+            if(type.equals("Saved")){
+                values.put( SAVED, 1);
+            }else if (type.equals("Favorite")){
+                values.put(FAVORITES, 1);
+            } else if (type.equals("Cooked")){
+                values.put(COOKED, 1);
+            }
+
+            db.update(RECIPESTABLE, values, ID + "=" + recipeID, null);
+            db.close( );
+
+        }
+        catch ( SQLException se ) {
+            Toast.makeText( appContext, se.getMessage( ), Toast.LENGTH_LONG).show();
+
+    }
     }
 
     public void onUpgrade( SQLiteDatabase db, int oldVersion, int newVersion) {

@@ -12,7 +12,9 @@ import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -26,6 +28,7 @@ public class RecipeActivity extends AppCompatActivity {
     private DatabaseManager dbManager;
     private SharedPreferences prefs;
     private SharedPreferences.OnSharedPreferenceChangeListener settingsListener;
+    private Button saved, favorite, cooked;
 
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -46,7 +49,43 @@ public class RecipeActivity extends AppCompatActivity {
         String recipeID = i.getStringExtra("recipeID");
         setValues(recipeID);
 
+        saved = (Button)findViewById(R.id.saved_item_button);
+        favorite = (Button)findViewById(R.id.favorite_item_button);
+        cooked = (Button)findViewById(R.id.cooked_item_button);
+
+        saved.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View arg0) {
+                String id = getID();
+                dbManager.updateRecipe("Saved",id);
+                Toast.makeText(getBaseContext(), R.string.saved_items, Toast.LENGTH_LONG).show();
+            }
+        });
+        favorite.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View arg0) {
+                String id = getID();
+                dbManager.updateRecipe("Favorite",id);
+                Toast.makeText(getBaseContext(), R.string.favorite_items, Toast.LENGTH_LONG).show();
+            }
+        });
+        cooked.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View arg0) {
+                String id = getID();
+                dbManager.updateRecipe("Cooked",id);
+                Toast.makeText(getBaseContext(), R.string.cooked_items, Toast.LENGTH_LONG).show();
+
+
+            }
+        });
+
+
        }
+
+
+    public String getID(){
+        TextView t = (TextView) findViewById(R.id.recipe_id);
+        String recipeID = (String)t.getText();
+        return recipeID;
+    }
 
 
     public void setValues (String recipeID){
@@ -59,6 +98,8 @@ public class RecipeActivity extends AppCompatActivity {
         TextView recipeTitle = (TextView)findViewById(R.id.recipeScreen_title);
         TextView recipeItems = (TextView)findViewById(R.id.db_ingredient_contents);
         TextView recipeDirection = (TextView)findViewById(R.id.db_directions_contents);
+        TextView recipeiD = (TextView)findViewById(R.id.recipe_id);
+        recipeiD.setText(recipeID);
         recipeItems.setText(String.valueOf(allRecords.get(3)));
         recipeTitle.setText(String.valueOf(allRecords.get(0)));
         recipeDirection.setText(String.valueOf(allRecords.get(2)));
@@ -119,6 +160,7 @@ public class RecipeActivity extends AppCompatActivity {
         startActivity( new Intent(getApplicationContext(),
                 MainActivity.class));
     }
+
 
 
 }
