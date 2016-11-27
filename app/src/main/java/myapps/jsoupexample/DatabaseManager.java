@@ -1,11 +1,14 @@
 package myapps.jsoupexample;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 /**
  * Created by Eduardo Verde on 11/19/2016.
@@ -60,7 +63,27 @@ public class DatabaseManager extends SQLiteOpenHelper  {
         Toast.makeText( appContext, "onUpgrade called", Toast.LENGTH_LONG).show( );
     }
 
-
+        public ArrayList<String> getTitle( ) {
+            ArrayList<String> recipeList = new ArrayList<String>( );
+            try {
+                SQLiteDatabase db = this.getReadableDatabase();
+                String query = "Select "+ RECIPENAME +" from " + RECIPESTABLE;
+                Cursor cursor = db.rawQuery( query, null);
+                cursor.moveToFirst();
+                while ( !cursor.isAfterLast()) {
+                    String oneRecord = "";
+                   for ( int i = 0; i < cursor.getColumnCount(); i++) {
+                        oneRecord += cursor.getString(i) + " ";
+                   }
+                   recipeList.add( oneRecord);
+                   cursor.moveToNext();
+               }
+            }
+           catch ( SQLException se ) {
+                Toast.makeText( appContext, se.getMessage( ), Toast.LENGTH_LONG).show();
+            }
+           return recipeList;
+        }
 
 
 

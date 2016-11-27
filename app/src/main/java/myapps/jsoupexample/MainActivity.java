@@ -1,25 +1,29 @@
 package myapps.jsoupexample;
 
+
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -39,8 +43,8 @@ public class MainActivity extends Activity {
     private Recipes recipesDB;
     private TextView id_tv, name_tv;
     private ImageButton search;
-    private AnimationDrawable frameAnimation = null;
     private ImageView saladBowl;
+    private AnimationDrawable frameAnimation;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -77,6 +81,20 @@ public class MainActivity extends Activity {
                             searchByRecipe();
                            }
         });
+
+        recipeListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> a, View view, int position, long id) {
+                LinearLayout parent = (LinearLayout) view;
+                TextView t = (TextView) parent.findViewById(R.id.recipe_id);
+                Toast.makeText(getBaseContext(), t.getText(), Toast.LENGTH_LONG).show();
+                startActivity(new Intent(MainActivity.this, RecipeActivity.class));
+                //displayTitle((String) t.getText());
+            }
+        });
+    }
+    public void displayTitle(String id){
+
     }
 
     public void searchByRecipe(){
@@ -84,7 +102,8 @@ public class MainActivity extends Activity {
 
         performAnimation(R.anim.fade_salad);
 
-                frameAnimation.start();
+
+        frameAnimation.start();
 
         saladBowl.setVisibility(View.INVISIBLE);
 
@@ -112,6 +131,7 @@ public class MainActivity extends Activity {
     }
 
 
+
     public void setCommonIngredient( View v ) {
         if ( ( (RadioButton) v).isChecked( ) ) {
             switch( v.getId( )) {
@@ -128,6 +148,10 @@ public class MainActivity extends Activity {
         }
 
     }
+
+
+
+
 
 
 //JSOUP Way of getting Data

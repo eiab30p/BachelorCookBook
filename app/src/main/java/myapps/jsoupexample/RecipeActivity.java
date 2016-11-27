@@ -8,18 +8,14 @@ import android.os.Bundle;
  */
 
 public class RecipeActivity extends Activity{
+    private Recipes recipesDB;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.recipe_screen);
+        recipesDB = new Recipes(this);
+        recipesDB.open();
     }
-
-
-
-
-
-
-
 
 
 
