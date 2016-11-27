@@ -12,11 +12,4 @@
         style="@style/listStyle"
         app:showAsAction="never" />
 
-    <item
-        android:id="@+id/return_home"
-        android:title="Return Home"
-        android:orderInCategory="200"
-        style="@style/listStyle"
-        app:showAsAction="never"/>
-
 </menu>

@@ -130,13 +130,14 @@ public class RecipeActivity extends AppCompatActivity {
     }
 
 
-    public void loadHistory(View v) {
-        startActivity(new Intent(getApplicationContext(), Recipes.class));
+    public void loadHistory(View V){
+        startActivity(new Intent(getApplicationContext(),
+                RecipesHistoryActivity.class));
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_recipe, menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
@@ -147,8 +148,8 @@ public class RecipeActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.recipe_history:
-                loadSettings(null);
+            case R.id.saved_recipes_history:
+                loadHistory(null);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

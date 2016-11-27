@@ -6,9 +6,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.drawable.AnimationDrawable;
+import android.media.SoundPool;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -47,6 +50,10 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences prefs;
     private SharedPreferences.OnSharedPreferenceChangeListener settingsListener;
 
+    private SoundPool soundPool;
+    private int blender;
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +63,8 @@ public class MainActivity extends AppCompatActivity {
         recipesDB = new Recipes(this);
         recipesDB.open();
         recipeListView = (ListView) findViewById(R.id.listView1);
+
+        configureSounds();
 
 
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
@@ -86,6 +95,8 @@ public class MainActivity extends AppCompatActivity {
         //Display All Recipes
         runDataList("Default");
 
+
+
         //Search Button, Send a recipes items to run Query
         searchButton.setOnClickListener(new View.OnClickListener() {
                         public void onClick(View arg0) {
@@ -105,9 +116,24 @@ public class MainActivity extends AppCompatActivity {
                 Intent i = new Intent(getApplicationContext(),RecipeActivity.class);
                 i.putExtra("recipeID",recipeID);
                 startActivity(i);
+                //sound effect here
+                soundPool.play( blender, 1, 1, 1, 0, 1.5f);
+
+
+
+
 
             }
         });
+    }//onCreate
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public void configureSounds(){
+        SoundPool.Builder spb = new SoundPool.Builder();
+        spb.setMaxStreams(2);
+        soundPool = spb.build();
+
+        blender = soundPool.load(this, R.raw.blender, 1);
     }
 
 
@@ -244,7 +270,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_save, menu);
 
         return true;
     }
@@ -257,7 +283,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item){
         switch(item.getItemId()){
             case R.id.saved_recipes_history:
-                Toast.makeText(this, "Saved Recipes Works", Toast.LENGTH_LONG).show();
+                //Toast.makeText(this, "Saved Recipes Works", Toast.LENGTH_LONG).show();
                 loadHistory(null);
                 return true;
             default:
