@@ -1,15 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
-
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/home_title"
-        android:textSize="20sp"
-        android:paddingTop="20dp"
-        android:layout_centerHorizontal="true"/>
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="#20262c"
+    >
 
     <!--search bar -->
     <LinearLayout
@@ -23,7 +16,8 @@
         android:id="@+id/search_title"
         style="@style/textStyle"
         android:text="@string/search_title"
-        android:layout_below="@id/title" />
+        android:layout_below="@id/title"
+        />
     <EditText
         android:id="@+id/search_entry"
         android:layout_width="wrap_content"
@@ -31,7 +25,11 @@
         android:layout_toRightOf="@id/search_title"
         android:layout_alignBaseline="@id/search_title"
         android:hint="@string/search_hint"
+        android:textColorHint="#aab4bf"
         android:textSize="14sp"
+        android:textCursorDrawable="@drawable/cursor_color"
+        android:theme="@style/edit_textbox"
+        style="@style/listStyle"
         android:paddingTop="10dp"
         android:paddingLeft="30dp"/>
 
@@ -51,19 +49,24 @@
         android:id="@+id/common_ingredients"
         style="@style/textStyle"
         android:text="@string/common_ingredients"
+        android:layout_marginBottom="10dp"
         android:layout_below="@id/search_box"
         android:paddingTop="20dp"/>
      <RadioGroup
         android:id="@+id/ingredient_radio_group"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="50dp"
         android:orientation="horizontal"
+         android:background="#505356"
+         android:gravity="center"
         android:layout_below="@id/common_ingredients">
         <RadioButton
             android:id="@+id/chicken_radio_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/chicken_radio_button"
+            style="@style/textStyle"
+            android:buttonTint="#878707"
             android:textSize="20sp"
             android:onClick="setCommonIngredient"/>
         <RadioButton
@@ -72,6 +75,8 @@
             android:layout_height="wrap_content"
             android:text="@string/beef_radio_button"
             android:textSize="20sp"
+            android:buttonTint="#878707"
+            style="@style/textStyle"
             android:onClick="setCommonIngredient"/>
         <RadioButton
             android:id="@+id/cereal_radio_button"
@@ -79,14 +84,18 @@
             android:layout_height="wrap_content"
             android:text="@string/cereal_radio_button"
             android:textSize="20sp"
+            android:buttonTint="#878707"
+            style="@style/textStyle"
             android:checked="true"
             android:onClick="setCommonIngredient"/>
      </RadioGroup>
+
 
     <TextView
         android:id="@+id/results_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         style="@style/textStyle"
         android:text="@string/results_label"
         android:layout_below="@id/ingredient_radio_group"/>
@@ -95,25 +104,28 @@
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@+id/results_label"
-        android:textColor="@color/colorPrimary">
+        android:layout_below="@+id/results_label">
 
         <ListView
             android:id="@+id/listView1"
             android:layout_height="fill_parent"
             android:layout_width="fill_parent"
-            android:textColor="@color/colorPrimary"/>
+            android:background="#778089"
+            />
 
     </LinearLayout>
 
-
-
-
-
-
-
-
-
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:text="@string/home_title"
+        android:textSize="20sp"
+        style="@style/textStyle"
+        android:paddingTop="20dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>

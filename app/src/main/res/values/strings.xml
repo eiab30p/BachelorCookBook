@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="home_title">Recipe</string>
+    <string name="home_title">Bachelor Cookbook!</string>
     <string name="search_title">Search:</string>
     <string name="search_hint">Enter Ingredient</string>
     <string name="search_button">Go</string>
@@ -35,6 +35,9 @@
     <string name="Items">Items</string>
     <string name="Directions">Directions</string>
     <string name="Video">Video</string>
+
+    <string name="view_saved_recipes">Saved Recipes</string>
+    <string name="view_grocery_list">Grocery List</string>
 
     <string name="no_code">No code</string>
 

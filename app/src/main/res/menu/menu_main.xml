@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <item android:id="@+id/menu_history"
+        android:title="@string/view_saved_recipes"
+        android:orderInCategory="100"
+        style="@style/textStyle"
+        app:showAsAction="never" />
+
+    <item android:id="@+id/menu_settings"
+        android:title="@string/view_grocery_list"
+        android:orderInCategory="200"
+        style="@style/textStyle"
+        app:showAsAction="never" />
+
+</menu>

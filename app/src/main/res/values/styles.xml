@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:colorBackground">#20262c</item>
     </style>
 
     <style name = "textStyle">
@@ -27,6 +28,10 @@
         <item name="android:textColor">#676673</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="edit_textbox">
+        <item name="colorAccent">#878707</item>
     </style>
 
 
