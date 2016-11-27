@@ -7,9 +7,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
 
 
 public class RecipesHistoryActivity extends AppCompatActivity {
@@ -45,6 +48,19 @@ public class RecipesHistoryActivity extends AppCompatActivity {
         cooked.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
                 runDataList("Cooked");
+            }
+        });
+
+        recipeListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> a, View view, int position, long id) {
+
+                LinearLayout parent = (LinearLayout) view;
+                TextView t = (TextView) parent.findViewById(R.id.recipe_id);
+                String recipeID = (String)t.getText();
+                Intent i = new Intent(getApplicationContext(),RecipeActivity.class);
+                i.putExtra("recipeID",recipeID);
+                startActivity(i);
             }
         });
 

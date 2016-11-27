@@ -27,7 +27,6 @@ import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -112,17 +111,11 @@ public class MainActivity extends AppCompatActivity {
                 LinearLayout parent = (LinearLayout) view;
                 TextView t = (TextView) parent.findViewById(R.id.recipe_id);
                 String recipeID = (String)t.getText();
-                Toast.makeText(getBaseContext(), t.getText(), Toast.LENGTH_LONG).show();
                 Intent i = new Intent(getApplicationContext(),RecipeActivity.class);
                 i.putExtra("recipeID",recipeID);
                 startActivity(i);
                 //sound effect here
                 soundPool.play( blender, 1, 1, 1, 0, 1.5f);
-
-
-
-
-
             }
         });
     }//onCreate
