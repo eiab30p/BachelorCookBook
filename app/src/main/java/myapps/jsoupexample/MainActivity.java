@@ -3,15 +3,18 @@ package myapps.jsoupexample;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.SimpleCursorAdapter;
@@ -59,25 +62,30 @@ public class MainActivity extends Activity {
         //Display All Recipes
         runDataList("Default");
 
-
         //Search Button, Send a recipes items to run Query
         searchButton.setOnClickListener(new View.OnClickListener() {
                         public void onClick(View arg0) {
                             searchByRecipe();
                            }
         });
+
+        recipeListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> a, View view, int position, long id) {
+                LinearLayout parent = (LinearLayout) view;
+                TextView t = (TextView) parent.findViewById(R.id.recipe_id);
+                startActivity(new Intent(MainActivity.this, RecipeActivity.class));
+            }
+        });
     }
 
     public void searchByRecipe(){
-
         EditText ingredieantsEntered = (EditText) findViewById(R.id.search_entry);
-
         if ( ingredieantsEntered.getText( ).toString().length( ) == 0 ) {
             runDataList("Default");
         } else{
             String ingredieant = ingredieantsEntered.getText( ).toString( );
             runDataList(ingredieant);
-
         }
     }
 
