@@ -27,7 +27,6 @@
     <string name="ingredient3">Ingredient 3</string>
 
 
-
     <string name="app_name">Bachelor Cook Book </string>
     <string name="action_settings">Settings</string>
     <string name="Title">Recipe Title</string>
@@ -41,8 +40,10 @@
 
     <string name="no_code">No code</string>
 
-
-
+    <string name="saved_items">Saved</string>
+    <string name="favorite_items">Favorite</string>
+    <string name="cooked_items">Cooked</string>
+    <string name="title_activity_recipes_history">RecipesHistoryActivity</string>
 
 
 </resources>

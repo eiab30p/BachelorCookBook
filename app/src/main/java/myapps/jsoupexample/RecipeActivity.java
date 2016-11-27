@@ -114,6 +114,12 @@ public class RecipeActivity extends AppCompatActivity {
         }
     }
 
+    //returns user to the home screen
+    public void home( View v ) {
+        startActivity( new Intent(getApplicationContext(),
+                MainActivity.class));
+    }
+
 
 }
 

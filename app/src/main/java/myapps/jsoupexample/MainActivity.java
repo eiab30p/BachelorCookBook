@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -246,5 +247,22 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
 
         return true;
+    }
+
+    public void loadHistory(View V){
+        startActivity(new Intent(getApplicationContext(),
+                RecipesHistoryActivity.class));
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch(item.getItemId()){
+            case R.id.saved_recipes_history:
+                Toast.makeText(this, "Saved Recipes Works", Toast.LENGTH_LONG).show();
+                loadHistory(null);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
     }
 }

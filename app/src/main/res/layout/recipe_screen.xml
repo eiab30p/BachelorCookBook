@@ -68,5 +68,18 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"/>
 
+
+    <ImageButton
+        android:id="@+id/home_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_home_black_24dp"
+        android:onClick="home"
+        android:layout_marginEnd="20dp"
+        android:layout_above="@+id/ingredient_scrollview"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="13dp" />
+
+
 </RelativeLayout>
 </ScrollView>
