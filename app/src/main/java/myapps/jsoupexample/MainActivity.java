@@ -10,12 +10,12 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -45,7 +45,7 @@ public class MainActivity extends Activity {
         recipesDB.open();
         recipeListView = (ListView) findViewById(R.id.listView1);
 
-        ImageButton searchButton = (ImageButton) findViewById(R.id.search_button);
+        final ImageButton searchButton = (ImageButton) findViewById(R.id.search_button);
 
         //This runs only when it is the first time loading APP
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -60,16 +60,27 @@ public class MainActivity extends Activity {
         runDataList("Default");
 
 
-        //If statement on two click one with specified Listener and the other with no Items
-        //Need to add a progress to this
+        //Search Button, Send a recipes items to run Query
         searchButton.setOnClickListener(new View.OnClickListener() {
                         public void onClick(View arg0) {
-                                // Execute Title AsyncTask
-                            runDataList("Sugar");
+                            searchByRecipe();
                            }
         });
-
     }
+
+    public void searchByRecipe(){
+
+        EditText ingredieantsEntered = (EditText) findViewById(R.id.search_entry);
+
+        if ( ingredieantsEntered.getText( ).toString().length( ) == 0 ) {
+            runDataList("Default");
+        } else{
+            String ingredieant = ingredieantsEntered.getText( ).toString( );
+            runDataList(ingredieant);
+
+        }
+    }
+
 
     public void runDataList(String itemSearch){
         Cursor cursor = recipesDB.readData(itemSearch);
@@ -87,13 +98,13 @@ public class MainActivity extends Activity {
         if ( ( (RadioButton) v).isChecked( ) ) {
             switch( v.getId( )) {
                 case R.id.chicken_radio_button:
-                    Toast.makeText(this, "Chicken", Toast.LENGTH_SHORT).show();
+                    runDataList("chicken");
                     break;
                 case R.id.cereal_radio_button:
-                   Toast.makeText(this, "Cerial", Toast.LENGTH_LONG).show();
+                    runDataList("cereal");
                     break;
                 case R.id.beef_radio_button:
-                    Toast.makeText(this, "Beef", Toast.LENGTH_LONG).show();
+                    runDataList("beef");
                     break;
             }
         }
@@ -165,10 +176,6 @@ public class MainActivity extends Activity {
             mProgressDialog.dismiss();
         }
     }
-
-
-    //Do a few Onlick listeners 1 for radio buttons and one for search
-
 
 
 }

@@ -95,12 +95,14 @@
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@+id/results_label">
+        android:layout_below="@+id/results_label"
+        android:textColor="@color/colorPrimary">
 
         <ListView
             android:id="@+id/listView1"
             android:layout_height="fill_parent"
-            android:layout_width="fill_parent" />
+            android:layout_width="fill_parent"
+            android:textColor="@color/colorPrimary"/>
 
     </LinearLayout>
 
