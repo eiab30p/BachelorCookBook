@@ -1,19 +1,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#20262c">
+    android:layout_height="match_parent">
 
     <ScrollView
         android:id="@+id/scrolling"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        >
+        android:layout_height="300dp">
 
         <TextView android:id="@+id/db_contents"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            style="@style/listStyle"
             android:text=""
             android:textSize="20sp" />
 
@@ -31,9 +27,19 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/titletxt"
-        android:background="#555554"
-        style="@style/textStyle"
         android:text="@string/Title" />
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <ListView
+            android:id="@+id/listView1"
+            android:layout_height="fill_parent"
+            android:layout_width="fill_parent" />
+
+    </LinearLayout>
 
 
 

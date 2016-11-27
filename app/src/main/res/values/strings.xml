@@ -13,6 +13,7 @@
 
     <string name="results_label">Search Results:</string>
 
+
     <!--ingredient checkbox-->
     <string name="recipe_title_label">Your Recipe</string>
     <string name="recipe_ingredients">Ingredients Needed</string>
@@ -36,5 +37,9 @@
     <string name="Video">Video</string>
 
     <string name="no_code">No code</string>
+
+
+
+
 
 </resources>
