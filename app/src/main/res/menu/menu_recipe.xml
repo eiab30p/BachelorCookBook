@@ -6,7 +6,7 @@
     android:layout_width="match_parent" android:layout_height="match_parent"
     >
 
-    <item android:id="@+id/menu_history"
+    <item android:id="@+id/recipe_history"
         android:title="@string/view_testing"
         android:orderInCategory="100"
         style="@style/listStyle"
