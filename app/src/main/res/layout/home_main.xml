@@ -110,10 +110,20 @@
             android:id="@+id/listView1"
             android:layout_height="fill_parent"
             android:layout_width="fill_parent"
-            android:background="#778089"
+            android:background="#505356"
             />
 
+
+
     </LinearLayout>
+
+    <ImageView android:id="@+id/salad_bowl"
+        android:layout_height="435dp"
+        android:layout_width="399dp"
+        android:background="@drawable/salad_bowl01"
+        android:layout_below="@+id/results_label"
+        android:visibility="invisible"
+        />
 
     <TextView
         android:id="@+id/title"
