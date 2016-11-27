@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="#20262c">
 
     <TextView
         android:id="@+id/recipe_title"
@@ -28,7 +29,7 @@
             android:id="@+id/db_ingredient_contents"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            style="@style/ingredientsStyle"
+            style="@style/listStyle"
             android:text="Sample Text: database content goes here."/>
     </ScrollView>
 
@@ -49,7 +50,7 @@
             android:id="@+id/db_directions_contents"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            style="@style/ingredientsStyle"
+            style="@style/listStyle"
             android:text="Sample Text: database content goes here"/>
     </ScrollView>
 

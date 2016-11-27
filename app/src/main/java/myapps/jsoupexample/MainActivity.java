@@ -10,6 +10,8 @@ import android.graphics.drawable.AnimationDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -32,7 +34,7 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
 
     String url;
     // lowest is 6700 highest is 19900
@@ -45,6 +47,8 @@ public class MainActivity extends Activity {
     private ImageButton search;
     private ImageView saladBowl;
     private AnimationDrawable frameAnimation;
+    private SharedPreferences prefs;
+    private SharedPreferences.OnSharedPreferenceChangeListener settingsListener;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -54,6 +58,19 @@ public class MainActivity extends Activity {
         recipesDB = new Recipes(this);
         recipesDB.open();
         recipeListView = (ListView) findViewById(R.id.listView1);
+
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+
+        prefs = PreferenceManager.getDefaultSharedPreferences( this);
+        initializeUserPreferences( );
+
+        settingsListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
+            public void onSharedPreferenceChanged( SharedPreferences prefs, String key ) {
+                initializeUserPreferences( );
+            }
+        };
+
+        prefs.registerOnSharedPreferenceChangeListener( settingsListener);
 
         saladBowl = (ImageView)findViewById(R.id.salad_bowl);
         saladBowl.setBackgroundResource(R.drawable.bowl_animation);
@@ -149,11 +166,6 @@ public class MainActivity extends Activity {
 
     }
 
-
-
-
-
-
 //JSOUP Way of getting Data
     private class GetWebRecipes extends AsyncTask<Void, Void, Void> {
         String title;
@@ -233,5 +245,16 @@ public class MainActivity extends Activity {
         public void onAnimationRepeat(Animation animation) {
 
         }
+    }
+
+    public void initializeUserPreferences() {
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+
+        return true;
     }
 }

@@ -2,10 +2,12 @@ package myapps.jsoupexample;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+import android.view.Menu;
 
 /**
  * Created by Eduardo Verde on 11/20/2016.
@@ -16,6 +18,8 @@ public class Recipes {
     private DatabaseManager dbManager;
     private Context ourcontext;
     private SQLiteDatabase database;
+
+
 
 
     public Recipes(Context c) {
@@ -107,5 +111,6 @@ public class Recipes {
         }
         return c;
     }
+
 
 }
