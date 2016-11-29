@@ -188,8 +188,8 @@ public class MainActivity extends AppCompatActivity {
         protected void onPreExecute() {
             super.onPreExecute();
             mProgressDialog = new ProgressDialog(MainActivity.this);
-            mProgressDialog.setTitle("JSoup ");
-            mProgressDialog.setMessage("Loading...");
+            mProgressDialog.setTitle(" Collecting The Best Recipes  ");
+            mProgressDialog.setMessage("Gathering...");
             mProgressDialog.setIndeterminate(false);
             mProgressDialog.show();
         }
